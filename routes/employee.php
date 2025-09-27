@@ -4,12 +4,12 @@ use App\Http\Controllers\Employee\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Employee\Auth\NewPasswordController;
 use App\Http\Controllers\Employee\Auth\PasswordController;
 use App\Http\Controllers\Employee\Auth\PasswordResetLinkController;
+use App\Livewire\LoginForm;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('employee')->name('employee.')->group(function () {
     Route::middleware('guest')->group(function () {
-        Route::get('login', [AuthenticatedSessionController::class, 'create'])
-            ->name('login');
+        Route::get('login', LoginForm::class)->name('login');
 
         Route::post('login', [AuthenticatedSessionController::class, 'store']);
 

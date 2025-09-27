@@ -28,7 +28,7 @@ Route::prefix('employee')->name('employee.')->group(function () {
 
     Route::middleware('auth:employees')->group(function () {
         Route::get('/dashboard', function () {
-            return view('employees.dashboard');
+            return view('layouts.employee');
         })->name('dashboard');
 
         Route::put('password', [PasswordController::class, 'update'])->name('password.update');

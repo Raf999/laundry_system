@@ -2,26 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'role',
-        'user_id',
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'password' => 'hashed',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
 }

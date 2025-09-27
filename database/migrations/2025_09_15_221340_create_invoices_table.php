@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->string('invoice_number')->unique();
-            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            $table->foreignId('order_id');
             $table->decimal('total_amount', 10, 2);
             $table->string('status')->default('unpaid'); // unpaid, paid, cancelled
             $table->timestamps();

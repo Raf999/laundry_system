@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('clothing_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
-            $table->foreignId('clothing_type_id')->constrained('clothing_types')->onDelete('cascade');
+            $table->foreignId('customer_id');
+            $table->foreignId('clothing_type_id');
             $table->string('status')->default('pending'); // e.g., pending, washed, ironed, delivered
             $table->timestamps();
         });

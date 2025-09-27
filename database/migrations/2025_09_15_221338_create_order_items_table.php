@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained()->onDelete('cascade');
-            $table->foreignId('clothing_type_id')->constrained()->onDelete('cascade');
-            $table->foreignId('service_id')->constrained()->onDelete('cascade');
+            $table->foreignId('order_id');
+            $table->foreignId('clothing_type_id');
+            $table->foreignId('service_id');
             $table->string('color')->nullable(); // optional: Blue, Black, Red
             $table->decimal('price', 8, 2); // auto-fetched from pricings
             $table->timestamps();

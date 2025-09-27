@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('payment_number')->unique();
-            $table->foreignId('invoice_id')->constrained()->onDelete('cascade');
+            $table->foreignId('invoice_id');
             $table->decimal('amount', 10, 2);
             $table->string('method'); // cash, card, momo
             $table->dateTime('payment_date');

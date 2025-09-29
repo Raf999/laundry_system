@@ -4,7 +4,12 @@ use App\Http\Controllers\Employee\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Employee\Auth\NewPasswordController;
 use App\Http\Controllers\Employee\Auth\PasswordController;
 use App\Http\Controllers\Employee\Auth\PasswordResetLinkController;
+use App\Livewire\Customers;
+use App\Livewire\Dashboard;
 use App\Livewire\LoginForm;
+use App\Livewire\Orders;
+use App\Livewire\Reports;
+use App\Livewire\Settings;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('employee')->name('employee.')->group(function () {
@@ -27,9 +32,11 @@ Route::prefix('employee')->name('employee.')->group(function () {
     });
 
     Route::middleware('auth:employees')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('layouts.employee');
-        })->name('dashboard');
+        Route::get('/dashboard', Dashboard::class)->name('dashboard');
+        Route::get('/orders', Orders::class)->name('orders');
+        Route::get('/customers', Customers::class)->name('customers');
+        Route::get('/reports', Reports::class)->name('reports');
+        Route::get('/settings', Settings::class)->name('settings');
 
         Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 

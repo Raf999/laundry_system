@@ -24,9 +24,6 @@
     <div class="flex-1 overflow-y-auto sidebar-scroll">
         <!-- Platform Section -->
         <div class="p-4">
-{{--            <h4 class="text-gray-900 dark:text-gray-400 text-xs font-medium uppercase tracking-wider mb-3">Platform</h4>--}}
-
-            <!-- Menu Expandable -->
             <!-- Dashboard -->
             <x-sidebar-menu :url="'dashboard'" :title="'Dashboard'" :icon="'fas fa-dashboard text-sm'"/>
 
@@ -75,7 +72,7 @@
     <!-- Bottom Logout Section -->
     <form method="POST" action="{{ route('employee.logout') }}">
         @csrf
-        <button type="submit" class="p-4 text-gray-800 border-t dark:border-gray-700 border-gray-200 flex items-center space-x-3 w-full  hover:bg-gray-300 text-lg">
+        <button type="submit" class="p-4 text-gray-800 border-t dark:border-gray-700 border-gray-200 flex items-center space-x-3 w-full  hover:bg-gray-300 dark:hover:bg-gray-700 text-lg">
             <i class="fas fa-sign-out-alt  text-gray-800 dark:text-white  rounded-full"></i>
 
             <span class="dark:text-gray-300">Logout</span>

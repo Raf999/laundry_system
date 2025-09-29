@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Dashboard')</title>
+    <title>{{$title ?? ''}}</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
         <!-- Top Navigation/Breadcrumb -->
         <div class="flex px-6 py-5 justify-between items-center">
             <div class="flex items-center space-x-2 text-sm">
-                <span class=" text-gray-800 dark:text-gray-400">Dashboard</span>
+                <span class=" text-gray-800 dark:text-gray-400">{{$title ?? ''}}</span>
                 <i class="fas fa-chevron-right text-gray-500 text-xs"></i>
                 <span class="text-gray-800 dark:text-gray-400">@yield('page-title', 'Overview')</span>
             </div>

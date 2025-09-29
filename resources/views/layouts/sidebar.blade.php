@@ -11,7 +11,7 @@
                     <i class="fas fa-cube text-white text-sm"></i>
                 </div>
                 <div>
-                    <h3 class=" text-gray-900 dark:text-white font-medium">DerryTech Inc</h3>
+                    <h3 class=" text-gray-900 dark:text-white font-medium">{{$user->company->name}}</h3>
                 </div>
             </div>
             {{--            <button class="text-gray-400 hover:text-white">--}}

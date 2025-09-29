@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enum\EmployeeRoleEnum;
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,6 +25,7 @@ class EmployeeFactory extends Factory
             'role' => $this->faker->randomElement(EmployeeRoleEnum::cases()),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
+            'company_id' => Company::factory(),
             'password' => 'pass9999',
         ];
     }

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Employees;
 
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-class Settings extends Component
+class Orders extends Component
 {
     #[Layout('layouts.employee')]
-    #[Title('Settings')]
+    #[Title('Orders')]
     public function render()
     {
-        return view('livewire.employees.settings');
+        return view('livewire.employees.orders');
     }
 }

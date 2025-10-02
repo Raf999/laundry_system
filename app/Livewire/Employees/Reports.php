@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Employees;
 
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;

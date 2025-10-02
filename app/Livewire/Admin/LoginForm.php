@@ -1,17 +1,12 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use App\DTOs\LoginAttemptDto;
-use App\Http\Requests\Auth\LoginRequest;
 use App\Services\AuthenticationService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class LoginForm extends Component
@@ -43,7 +38,7 @@ class LoginForm extends Component
                 'email' => $this->email,
                 'password' => $this->password,
                 'remember' => $this->remember
-            ], 'employees');
+            ], 'admin');
 
             Log::info("Login attempt for {$this->email} and {$this->password}");
             $authService->authenticate($dto);
@@ -57,7 +52,7 @@ class LoginForm extends Component
             // Reset form
             $this->reset(['email', 'password', 'remember']);
 
-            $this->redirect(route('employee.dashboard'));
+            $this->redirect(route('admin.dashboard'));
         } catch (ValidationException $exception) {
             Log::error($exception->getMessage());
             $this->addError('email', $exception->getMessage());

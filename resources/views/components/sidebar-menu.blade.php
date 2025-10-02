@@ -1,8 +1,8 @@
 <div class="mb-2" x-data="{ open: false }">
-    <a href="{{ route('employee.'.$url) }}"  @click="open = !open"
+    <a href="{{ route($url) }}" wire:navigate  @click="open = !open"
             class="w-full flex items-center justify-between text-left px-3 py-2 rounded-lg hover:bg-gray-700 hover:text-white text-gray-900 dark:text-gray-300 text-lg">
         <div class="flex items-center space-x-3 ">
-            <i class="{{ $icon }}"></i>
+            <i class="{{ $icon }} text-sm"></i>
             <span>{{$title ?? ''}}</span>
         </div>
         @if(isset($submenus))

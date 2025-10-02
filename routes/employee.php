@@ -4,12 +4,12 @@ use App\Http\Controllers\Employee\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Employee\Auth\NewPasswordController;
 use App\Http\Controllers\Employee\Auth\PasswordController;
 use App\Http\Controllers\Employee\Auth\PasswordResetLinkController;
-use App\Livewire\Customers;
-use App\Livewire\Dashboard;
-use App\Livewire\LoginForm;
-use App\Livewire\Orders;
-use App\Livewire\Reports;
-use App\Livewire\Settings;
+use App\Livewire\Employees\Customers;
+use App\Livewire\Employees\Dashboard;
+use App\Livewire\Employees\LoginForm;
+use App\Livewire\Employees\Orders;
+use App\Livewire\Employees\Reports;
+use App\Livewire\Employees\Settings;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('employee')->name('employee.')->group(function () {

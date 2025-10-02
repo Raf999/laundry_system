@@ -1,4 +1,4 @@
-@php $user = auth('employees')->user() @endphp
+@php $user = auth('admin')->user() @endphp
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,22 +38,26 @@
         :user="$user"
         :menus="[
                [
-                   'url' => 'employee.dashboard',
+                   'url' => 'admin.dashboard',
                    'title' => 'Dashboard',
                    'icon' => 'fas fa-dashboard'
                ],
                [
-                   'url' => 'employee.orders',
+                   'url' => 'admin.companies',
+                   'title' => 'Companies',
+                   'icon' => 'fas fa-briefcase',
+               ],[
+                   'url' => 'admin.orders',
                    'title' => 'Orders',
                    'icon' => 'fas fa-motorcycle',
                ],
                [
-                   'url' => 'employee.customers',
+                   'url' => 'admin.customers',
                    'title' => 'Customers',
                    'icon' => 'fas fa-person',
                ],
                [
-                   'url' => 'employee.reports',
+                   'url' => 'admin.reports',
                    'title' => 'Reports',
                    'icon' => 'fas fa-chart-bar',
                    // 'submenus' => ['Sales Report', 'Customer Report']
@@ -72,7 +76,7 @@
 
             <div class="flex items-center space-x-4">
                 <i class="fas fa-user text-sm text-white bg-gray-700 px-3 py-2 rounded-full"></i>
-                <p class="text-sm">Hi! {{$user->full_name}}</p>
+                <p class="text-sm">Hi! {{$user->name}}</p>
             </div>
         </div>
 

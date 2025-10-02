@@ -54,7 +54,7 @@ class Companies extends Component
             ],
             'Active' => [
                 'title' => 'Active',
-                'value' => 0,
+                'value' => 1000000,
                 'color' => 'blue',
             ],
         ];

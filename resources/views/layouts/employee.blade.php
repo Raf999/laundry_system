@@ -15,20 +15,6 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
-        .sidebar-scroll::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .sidebar-scroll::-webkit-scrollbar-track {
-            background: #374151;
-        }
-
-        .sidebar-scroll::-webkit-scrollbar-thumb {
-            background: #6b7280;
-            border-radius: 2px;
-        }
-    </style>
 </head>
 <body class="bg-gray-100 dark:text-white font-sans dark:bg-gray-900">
 <div class="flex h-screen overflow-hidden">

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enum\CompanyStatus;
 use App\Enum\EmployeeRoleEnum;
 use App\Models\Company;
 use App\Models\Employee;
@@ -20,6 +21,7 @@ class EmployeeSeeder extends Seeder
             'address' => 'Accra, Ghana',
             'phone' => '+233200000000',
             'email' => 'info@raflaundry.com',
+            'status' => CompanyStatus::APPROVED->value,
         ]);
 
         Employee::create([

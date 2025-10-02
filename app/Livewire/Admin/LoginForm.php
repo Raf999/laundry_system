@@ -7,6 +7,7 @@ use App\Services\AuthenticationService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class LoginForm extends Component
@@ -62,8 +63,9 @@ class LoginForm extends Component
     }
 
     #[Layout('layouts.guest')]
+    #[Title('Login')]
     public function render()
     {
-        return view('livewire.employees.login-form');
+        return view('livewire.admin.login-form');
     }
 }

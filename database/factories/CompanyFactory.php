@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enum\CompanyStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,7 @@ class CompanyFactory extends Factory
             'address' => $this->faker->address(),
             'email' => $this->faker->unique()->companyEmail(),
             'phone' => $this->faker->phoneNumber(),
+            'status' => $this->faker->randomElement(CompanyStatus::cases()),
             'created_at' => now(),
             'updated_at' => now(),
         ];

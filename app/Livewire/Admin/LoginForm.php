@@ -30,9 +30,6 @@ class LoginForm extends Component
     {
         $this->isLoading = true;
         $this->resetErrorBag();
-        Log::debug($this->password);
-        Log::debug($this->email);
-
         try {
             $this->validate();
             $dto = LoginAttemptDto::fromRequest([
@@ -41,7 +38,7 @@ class LoginForm extends Component
                 'remember' => $this->remember
             ], 'admin');
 
-            Log::info("Login attempt for {$this->email} and {$this->password}");
+
             $authService->authenticate($dto);
 
             // Show success message (optional)

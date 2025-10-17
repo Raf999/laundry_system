@@ -1,6 +1,8 @@
 <?php
 
+use App\Enum\CompanyStatus;
 use App\Livewire\Admin\Companies;
+use App\Livewire\Admin\CompaniesList;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\LoginForm;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +18,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Companies Management
         Route::prefix('companies')->name('companies.')->group(function () {
             Route::get('/', Companies::class)->name('index');
+            Route::get('/pending', CompaniesList::class)->defaults('status', CompanyStatus::PENDING->value)->name('pending');
         });
 
         // Orders Management

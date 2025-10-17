@@ -5,6 +5,8 @@ namespace App\Livewire\Admin;
 use App\Models\Company;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -50,6 +52,8 @@ class CompaniesList extends Component
         $this->resetPage();
     }
 
+    #[Layout('layouts.admin')]
+    #[Title('Companies')]
     public function render()
     {
         $companies = Company::query()
@@ -67,6 +71,7 @@ class CompaniesList extends Component
                 Carbon::parse($this->endDate)->endOfDay()
             ]);
         })->orderBy('created_at', 'asc')->paginate(10);
+
         return view('livewire.admin.companies-list', [
             'companies' => $companies
         ]);

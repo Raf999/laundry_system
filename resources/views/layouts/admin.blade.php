@@ -43,7 +43,7 @@
                        'submenus' => [
                            ['title' => 'Overview',],
                            ['title' => 'Companies List', 'url' => 'admin.companies.index'],
-                           ['title' => 'Pending Approvals', ],
+                           ['title' => 'Pending Approvals', 'url' => 'admin.companies.pending'],
                            ['title' => 'Active Companies', ],
                            ['title' => 'Suspended Companies', ],
                        ],
@@ -122,7 +122,7 @@
     />
 
     <!-- Main Content Area -->
-    <div class="flex-1 flex flex-col overflow-hidden" wire:navigate id="main-content">
+    <div class="flex-1 flex flex-col overflow-hidden">
         <!-- Top Navigation/Breadcrumb -->
         <div class="flex px-6 py-5 justify-between items-center">
             <div class="flex items-center space-x-2 text-sm">

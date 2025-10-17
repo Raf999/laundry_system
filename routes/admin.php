@@ -12,9 +12,40 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('dashboard', Dashboard::class)->name('dashboard');
-        Route::get('companies', Companies::class)->name('companies');
-        Route::get('orders', Dashboard::class)->name('orders');
-        Route::get('reports', Dashboard::class)->name('reports');
-        Route::get('customers', Dashboard::class)->name('customers');
+
+        // Companies Management
+        Route::prefix('companies')->name('companies.')->group(function () {
+            Route::get('/', Companies::class)->name('index');
+        });
+
+        // Orders Management
+        Route::prefix('orders')->name('orders.')->group(function () {
+            Route::get('/', Dashboard::class)->name('index');
+        });
+
+        // Reports Management
+        Route::prefix('reports')->name('reports.')->group(function () {
+            Route::get('/', Dashboard::class)->name('index');
+        });
+
+        // Customers Management
+        Route::prefix('customers')->name('customers.')->group(function () {
+            Route::get('/', Dashboard::class)->name('index');
+        });
+
+        //Financial Management
+        Route::prefix('financials')->name('financials.')->group(function () {
+            Route::get('/', Dashboard::class)->name('index');
+        });
+
+        // Analytics Management
+        Route::prefix('analytics')->name('analytics.')->group(function () {
+            Route::get('/', Dashboard::class)->name('index');
+        });
+
+        // Settings Management
+        Route::prefix('settings')->name('settings.')->group(function () {
+            Route::get('/', Dashboard::class)->name('index');
+        });
     });
 });

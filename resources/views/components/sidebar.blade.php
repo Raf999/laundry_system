@@ -21,7 +21,13 @@
         <!-- Platform Section -->
         <div class="p-4">
             @foreach($menus as $menu )
-                <x-sidebar-menu :url="$menu['url']" :title="$menu['title']" :icon="$menu['icon']" /> {{--:submenus="$menu['submenus']!--}}
+                <x-sidebar-menu
+                    :url="$menu['url']"
+                    :title="$menu['title']"
+                    :icon="$menu['icon']"
+                    :submenus="$menu['submenus'] ?? []"
+                    {{--                    :submenus="$menu['submenus']"--}}
+                />
             @endforeach
         </div>
     </div>

@@ -10,10 +10,10 @@
     <a href="{{ empty($submenus) ? route($url) : '#'}}"
        wire:navigate.hover @click="open = !open"
        wire:current="bg-gray-700 text-white"
-       class="w-full flex items-center justify-between text-left px-3 py-2 rounded-lg hover:bg-gray-700 hover:text-white text-gray-900 dark:text-gray-300 text-lg">
+       class="w-full flex items-center justify-between text-left px-3 py-2 rounded-lg hover:bg-gray-700 hover:text-white text-gray-900 dark:text-gray-300 text-base">
         {{--            {{ request()->routeIs($url . '*') ? 'bg-gray-700 text-white' : '' }}">--}}
         <div class="flex items-center space-x-3 ">
-            <i class="{{ $icon }} text-sm"></i>
+            <i class="{{ $icon }} text-base font-thin"></i>
             <span>{{$title ?? ''}}</span>
         </div>
 
@@ -41,7 +41,7 @@
                 <a
                     href="{{ !empty($item['url']) ? route($item['url'])  : '#'}}"
                     wire:navigate.hover
-                    class="block px-3 py-2 text-sm text-gray-900 dark:text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg {{ !empty($item['url']) && request()->routeIs($item['url']) ? 'bg-gray-700': ''}}">{{$item['title']}}</a>
+                    class="block px-3 py-2 text-sm text-gray-900 dark:text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg {{ !empty($item['url']) && request()->routeIs($item['url']) ? 'bg-gray-700 text-white': ''}}">{{$item['title']}}</a>
             @endforeach
         </div>
     @endif

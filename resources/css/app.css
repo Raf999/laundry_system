@@ -5,3 +5,14 @@
 @tailwind utilities;
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+    .bg-theme-primary {
+        @apply bg-zinc-50 dark:bg-zinc-950;
+    }
+
+    .bg-theme-secondary {
+        @apply bg-zinc-200 dark:bg-zinc-900;
+    }
+}
+

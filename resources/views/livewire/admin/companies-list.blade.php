@@ -1,6 +1,6 @@
 @php use App\Enum\CompanyStatus;use Carbon\Carbon; use Illuminate\Support\Str;  @endphp
 <div>
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow broder dark:border-gray-700">
+    <div class="bg-theme-primary rounded-lg shadow broder dark:border-gray-700">
         <!-- Header -->
         <div class="px-6 py-4 border-b dark:border-gray-700 border-gray-100">
             <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Companies List</h2>
@@ -14,10 +14,10 @@
                     <label class="block text-sm font-medium dark:text-white text-gray-700 mb-1">Date Range</label>
                     <div class="flex gap-2">
                         <input type="date" wire:model.live="startDate"
-                               class="flex-1 px-3 py-2 border text-gray-700 dark:text-white dark:border-gray-600  dark:bg-gray-700 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               class="flex-1 px-3 py-2 border text-gray-700 dark:text-white dark:border-gray-600  bg-theme-secondary border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                placeholder="Start date">
                         <input type="date" wire:model.live="endDate"
-                               class="flex-1 px-3 py-2 border text-gray-700 dark:text-white dark:border-gray-600  dark:bg-gray-700 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               class="flex-1 px-3 py-2 border text-gray-700 dark:text-white dark:border-gray-600  bg-theme-secondary border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                placeholder="End date">
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="w-48">
                     <label class="block text-sm font-medium dark:text-white text-gray-700 mb-1">Status</label>
                     <select wire:model.live="status"
-                            class="w-full px-3 py-2 border text-gray-700 dark:text-white dark:border-gray-600  dark:bg-gray-700 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            class="w-full px-3 py-2 border text-gray-700 dark:text-white dark:border-gray-600  bg-theme-secondary border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value=""></option>
                         @foreach(CompanyStatus::cases() as $status)
                             <option value="{{$status->value}}">{{$status->value}}</option>
@@ -38,7 +38,7 @@
                 <div class="flex-1 min-w-[200px]">
                     <label class="block text-sm font-medium dark:text-white text-gray-700 mb-1">Search</label>
                     <input type="text" wire:model.live.debounce.300ms="search"
-                           class="w-full px-3 py-2 border text-gray-700 dark:text-white dark:border-gray-600  dark:bg-gray-700 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           class="w-full px-3 py-2 border text-gray-700 dark:text-white dark:border-gray-600  bg-theme-secondary border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                            placeholder="Search...">
                 </div>
 
@@ -65,7 +65,7 @@
         <!-- Table -->
         <div class="overflow-x-auto">
             <table class="w-full">
-                <thead class="bg-white dark:bg-gray-800">
+                <thead class="bg-theme-primary">
                 <tr class="text-gray-500 dark:text-white text-left text-xs font-medium uppercase tracking-wider border-b border-gray-100 dark:border-gray-700">
                     <th class="px-6 py-3">Company Name
                     </th>
@@ -82,7 +82,7 @@
                     </th>
                 </tr>
                 </thead>
-                <tbody class="bg-white dark:bg-gray-800 divide-y dark:divide-gray-700 divide-gray-100">
+                <tbody class="bg-theme-primary divide-y dark:divide-gray-700 divide-gray-100">
                 @forelse($companies as $company)
                     <tr class="dark:hover:bg-gray-700 dark:text-white">
                         <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $company->name }}</td>
@@ -100,7 +100,7 @@
                                 </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm ">
-                            {{ Carbon::parse($company->date)->format('M d Y') }}
+                            {{ Carbon::parse($company->created_at)->format('M d Y') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex gap-2">

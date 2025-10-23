@@ -9,6 +9,7 @@ use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\Features\SupportPageComponents\BaseTitle;
 
 class Companies extends Component
 {
@@ -68,7 +69,7 @@ class Companies extends Component
         ];
     }
 
-    #[Layout('layouts.admin')]
+    #[Layout('layouts.admin.app')]
     #[Title('Companies')]
     public function render()
     {

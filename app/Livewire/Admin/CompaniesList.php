@@ -52,7 +52,7 @@ class CompaniesList extends Component
         $this->resetPage();
     }
 
-    #[Layout('layouts.admin')]
+    #[Layout('layouts.admin.app')]
     #[Title('Companies')]
     public function render()
     {

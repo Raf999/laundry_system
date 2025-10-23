@@ -112,7 +112,7 @@
     </div>
 
     <!-- Bottom Logout Section -->
-    <form method="POST" action="{{ route('employee.logout') }}">
+    <form method="POST" action="{{ route('admin.logout') }}">
         @csrf
         <button type="submit"
                 class="p-4 text-gray-800 border-t dark:border-gray-700 border-gray-200 flex items-center space-x-3 w-full  hover:bg-gray-300 dark:hover:bg-gray-700 text-lg">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Enum\CompanyStatus;
+use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Livewire\Admin\Companies;
 use App\Livewire\Admin\CompaniesList;
 use App\Livewire\Admin\Dashboard;
@@ -50,5 +51,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('settings')->name('settings.')->group(function () {
             Route::get('/', Dashboard::class)->name('index');
         });
+
+        Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+            ->name('logout');
     });
 });

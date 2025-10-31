@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id');
-            $table->foreignId('employee_id'); // person handling order
+            $table->foreignId('Staff_id'); // person handling order
             $table->date('order_date');
             $table->string('status')->default('processing'); // processing, completed, cancelled
             $table->timestamps();

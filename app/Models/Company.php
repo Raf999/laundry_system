@@ -11,8 +11,8 @@ class Company extends Model
     /** @use HasFactory<CompanyFactory> */
     use HasFactory;
 
-    public function employees()
+    public function Staffs()
     {
-        return $this->hasMany(Employee::class);
+        return $this->hasMany(Staff::class);
     }
 }

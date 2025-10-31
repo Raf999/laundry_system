@@ -3,20 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use App\Models\Employee;
-use App\Models\Customer;
-use App\Models\ClothingType;
-use App\Models\Service;
-use App\Models\Pricing;
-use App\Models\Order;
-use App\Models\ClothingItem;
-use App\Models\OrderItem;
-use App\Models\Invoice;
-use App\Models\Payment;
-use Illuminate\Support\Str;
-use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,9 +11,9 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
 
         // --------------------
-        // Employees
+        // Staffs
         // --------------------
-        $this->call(EmployeeSeeder::class);
+        $this->call(StaffSeeder::class);
 //
 //        // --------------------
 //        // Customers
@@ -85,14 +71,14 @@ class DatabaseSeeder extends Seeder
 //        // --------------------
 //        $order1 = Order::create([
 //            'customer_id' => $john->id,
-//            'employee_id' => $frontdeskEmp->id,
+//            'Staff_id' => $frontdeskEmp->id,
 //            'order_date' => Carbon::today()->subDays(1),
 //            'status' => 'processing',
 //        ]);
 //
 //        $order2 = Order::create([
 //            'customer_id' => $jane->id,
-//            'employee_id' => $frontdeskEmp->id,
+//            'Staff_id' => $frontdeskEmp->id,
 //            'order_date' => Carbon::today(),
 //            'status' => 'processing',
 //        ]);

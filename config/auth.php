@@ -40,9 +40,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'employees' => [
+        'staff' => [
             'driver' => 'session',
-            'provider' => 'employees',
+            'provider' => 'staff',
         ],
         'admin' => [
             'driver' => 'session',
@@ -72,9 +72,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'employees' => [
+        'staff' => [
             'driver' => 'eloquent',
-            'model' =>  App\Models\Employee::class,
+            'model' =>  App\Models\Staff::class,
         ],
         'admin' => [
             'driver' => 'eloquent',
@@ -114,8 +114,8 @@ return [
             'throttle' => 60,
         ],
 
-        'employees' => [
-            'provider' => 'employees',
+        'staff' => [
+            'provider' => 'staff',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,

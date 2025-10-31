@@ -1,35 +1,98 @@
 @props([
     'title' => 'Service Popularity',
-    'services' => [
-        ['name' => 'Wash & Fold', 'percentage' => 30, 'color' => 'bg-blue-400'],
-        ['name' => 'Dry Cleaning', 'percentage' => 30, 'color' => 'bg-blue-300'],
-        ['name' => 'Alterations', 'percentage' => 60, 'color' => 'bg-blue-500'],
-    ]
+    'services' => ['Wash & Fold', 'Dry Cleaning', 'Alterations'],
+    'percentages' => [30, 30, 60],
+    'colors' => ['#60a5fa', '#93c5fd', '#3b82f6']
 ])
+
+@php
+    $chartId = 'service-chart-' . uniqid();
+@endphp
 
 <div {{ $attributes->merge(['class' => 'bg-white rounded-lg shadow-md p-6 w-full']) }}>
     <h2 class="text-lg font-semibold text-gray-800 mb-6">{{ $title }}</h2>
 
-    <div class="flex items-end justify-around h-64 px-4">
-        @foreach($services as $service)
-            <div class="flex flex-col items-center gap-3 flex-1 max-w-[100px]">
-                {{-- Bar --}}
-                <div class="relative w-full" style="height: 200px;">
-                    <div class="absolute bottom-0 w-full {{ $service['color'] }} rounded-t-md transition-all duration-300"
-                         style="height: {{ ($service['percentage'] / 60) * 100 }}%;">
-                    </div>
-
-                    {{-- Percentage label --}}
-                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-sm font-semibold text-gray-700">
-                        {{ $service['percentage'] }}%
-                    </div>
-                </div>
-
-                {{-- Service name --}}
-                <div class="text-xs text-gray-600 text-center w-full">
-                    {{ $service['name'] }}
-                </div>
-            </div>
-        @endforeach
+    <div class="relative h-64">
+        <canvas id="{{ $chartId }}"></canvas>
     </div>
 </div>
+
+@once
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    @endpush
+@endonce
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('{{ $chartId }}');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: @json($services),
+                    datasets: [{
+                        label: 'Popularity',
+                        data: @json($percentages),
+                        backgroundColor: @json($colors),
+                        borderRadius: 8,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            cornerRadius: 8,
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#6b7280',
+                                font: {
+                                    size: 11
+                                },
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#6b7280',
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

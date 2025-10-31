@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between mb-4 w-full">
         <h3 class="text-base font-bold text-{{$color}}-900 dark:text-white">{{$title}}</h3>
         <div class="bg-{{$color}}-200 rounded-full p-2 w-10 h-10 flex items-center justify-center">
-            <i class="{{ $icon }} text-{{$color}}-800"></i>
+            <i class="{{ $icon }} text-{{$color}}-800 text-xl"></i>
         </div>
     </div>
     <p class="text-4xl font-bold">{{ $value ?? 0 }}</p>

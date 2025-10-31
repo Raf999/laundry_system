@@ -3,42 +3,40 @@
         [
             'time' => '1 mins ago',
             'message' => 'Order #1045 moved to "Drying".',
-            'type' => 'info',
+            'type'   => 'Orders',
+            'color'    => 'blue',
             'highlight' => ['#1045', 'Drying']
         ],
         [
             'time' => '5 mins ago',
             'message' => 'New Customer registered.',
-            'type' => 'success'
+            'type'   => 'Customers',
+            'color'   => 'green',
         ],
         [
             'time' => '3 mins ago',
             'message' => 'Payment of GHS 50.00 received for Order #042.',
-            'type' => 'success',
+            'type'   => 'Payments',
+            'color'   => 'amber',
             'highlight' => ['GHS 50.00', '#042']
         ],
     ]
 ])
 
-<div {{ $attributes->merge(['class' => 'bg-white rounded-lg shadow-md p-6 w-full']) }}>
-    <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Activity</h2>
+<div {{ $attributes->merge(['class' => 'bg-theme-primary rounded-lg shadow-md p-6 w-full']) }}>
+    <h2 class="text-xl font-semibold dark:text-white mb-4">Recent Activity</h2>
 
     <div class="space-y-3">
         @foreach($activities as $activity)
-            <div class="text-sm">
-                {{-- Time stamp --}}
-                @if(isset($activity['time']))
-                    <div class="text-gray-500 mb-1">{{ $activity['time'] }}:</div>
-                @endif
+            <div class="bg-{{$activity['color']}}-100 p-2 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div class="text-{{$activity['color']}}-900 font-bold text-base">{{ $activity['type'] }}</div>
+                    <div class="text-black text-sm">{{ $activity['time'] }}</div>
 
+                </div>
                 {{-- Activity message --}}
                 @if(isset($activity['message']))
-                    <div class="
-                        @if($activity['type'] === 'info') text-blue-600
-                        @elseif($activity['type'] === 'success') text-green-600
-                        @else text-gray-700
-                        @endif
-                    ">
+                    <div class="text-black text-sm">
                         @php
                             $message = $activity['message'];
                             $highlights = $activity['highlight'] ?? [];

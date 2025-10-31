@@ -1,17 +1,19 @@
+{{-- resources/views/components/staff-performance-card.blade.php --}}
 @props([
     'title' => 'Staff Performance',
     'topPerformer' => [
         'name' => 'Ama Mensah',
-        'avatar' => '👤',
+//        'avatar' => '👤',
         'isTopPerformer' => true
     ],
-    'metrics' => [
-        ['label' => 'Assigned Tasks', 'value' => 100, 'max' => 100, 'color' => 'bg-blue-500'],
-        ['label' => 'Kwame Nakruu', 'value' => 40, 'max' => 100, 'color' => 'bg-blue-400'],
-        ['label' => 'Completed Tasks', 'value' => 20, 'max' => 100, 'color' => 'bg-blue-400'],
-    ],
-    'legendLabels' => ['10', 'Accomplished', 'Tasks']
+    'labels' => ['Ama Mensah', 'Kwame Asante', 'Kweku Ananse'],
+    'values' => [100, 40, 20],
+    'colors' => ['#3b82f6', '#60a5fa', '#93c5fd']
 ])
+
+@php
+    $chartId = 'performance-chart-' . uniqid();
+@endphp
 
 <div {{ $attributes->merge(['class' => 'bg-white rounded-lg shadow-md p-6 w-full']) }}>
     <h2 class="text-lg font-semibold text-gray-800 mb-6">{{ $title }}</h2>
@@ -38,27 +40,88 @@
             </div>
         </div>
 
-        {{-- Performance Bars --}}
-        <div class="space-y-4">
-            @foreach($metrics as $metric)
-                <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-2">
-                        <span>{{ $metric['label'] }}</span>
-                    </div>
-                    <div class="relative h-6 bg-gray-100 rounded-full overflow-hidden">
-                        <div class="{{ $metric['color'] }} h-full rounded-full transition-all duration-300"
-                             style="width: {{ ($metric['value'] / $metric['max']) * 100 }}%">
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-
-        {{-- Legend --}}
-        <div class="flex justify-between text-xs text-gray-400 pt-2">
-            @foreach($legendLabels as $label)
-                <span>{{ $label }}</span>
-            @endforeach
+        {{-- Chart --}}
+        <div class="relative h-48">
+            <canvas id="{{ $chartId }}"></canvas>
         </div>
     </div>
 </div>
+
+@once
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    @endpush
+@endonce
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('{{ $chartId }}');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: @json($labels),
+                    datasets: [{
+                        label: 'Tasks',
+                        data: @json($values),
+                        backgroundColor: @json($colors),
+                        borderRadius: 20,
+                        borderSkipped: false,
+                        barThickness: 20,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            cornerRadius: 8,
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Tasks: ' + context.parsed.x;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#9ca3af',
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#6b7280',
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

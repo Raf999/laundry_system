@@ -18,28 +18,28 @@ class Dashboard extends Component
                 'value' => Util::formatMoney(145000),
                 'percentage' => 10,
                 'color' => 'purple',
-                'icon' => 'fas fa-users'
+                'icon' => 'bx bx-dollar-circle'
             ],
             'active_orders' => [
                 'title' => 'Active Orders',
                 'value' => Util::formatNumber(100),
                 'percentage' => 12,
-                'color' => 'yellow',
-                'icon' => 'fas fa-clock'
+                'color' => 'amber',
+                'icon' => 'bx bx-bell-check'
             ],
             'ready_for_pickup' => [
                 'title' => 'Ready for Pickup',
                 'value' => Util::formatNumber(100),
                 'percentage' => 14,
                 'color' => 'emerald',
-                'icon' => 'fas fa-check-circle'
+                'icon' => 'bx bx-cycling'
             ],
             'pending_payments' => [
                 'title' => 'Pending Payments',
                 'value' => Util::formatMoney(100),
                 'percentage' => 20,
                 'color' => 'gray',
-                'icon' => 'fas fa-ban'
+                'icon' => 'bx bx-coins'
             ],
         ];
     }

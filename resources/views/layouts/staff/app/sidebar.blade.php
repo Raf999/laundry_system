@@ -1,4 +1,4 @@
-<div class="w-64 bg-white dark:bg-gray-800 flex flex-col">
+<div class="w-64 bg-theme-primary flex flex-col">
     <!-- Company Header -->
     <div class="p-4">
         <div class="flex items-center justify-between">

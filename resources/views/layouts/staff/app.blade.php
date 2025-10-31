@@ -19,7 +19,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 dark:text-white font-sans dark:bg-gray-900">
+<body class="bg-theme-primary dark:text-white font-sans ">
 <div class="flex h-screen overflow-hidden">
 
     <!-- Sidebar -->
@@ -42,8 +42,8 @@
         </div>
 
         <!-- Main Content -->
-        <div class="flex-1 overflow-y-auto bg-gray-100 dark:bg-gray-900">
-            <div class="p-6">
+        <div class="flex-1 overflow-y-auto bg-theme-secondary">
+            <div class="p-10">
                 @isset($slot)
                     {{ $slot }}
                 @endisset

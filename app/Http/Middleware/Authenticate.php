@@ -17,7 +17,7 @@ class Authenticate extends Middleware
             }
 
             if ($request->is('Staff') || $request->is('Staff/*')) {
-                return route('Staff.login');
+                return route('staff.login');
             }
 
             return route('login'); // fallback

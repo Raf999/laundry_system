@@ -46,9 +46,9 @@ class User extends Authenticatable
         ];
     }
 
-    public function employee()
+    public function Staff()
     {
-        return $this->hasOne(Employee::class);
+        return $this->hasOne(Staff::class);
     }
-    
+
 }

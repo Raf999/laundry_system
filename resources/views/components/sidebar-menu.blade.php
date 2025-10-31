@@ -1,10 +1,3 @@
-@php
-    // Determine module prefix automatically if not given
-    $prefix = $module ?? explode('.', Route::currentRouteName())[0];
-    \Illuminate\Support\Facades\Log::debug($prefix. '.' . $url);
-    \Illuminate\Support\Facades\Log::debug("Current Route: " .request()->route()->getName());
-@endphp
-
 <div class="mb-2" x-data="{ open: {{ request()->routeIs($url . '*') ? 'true' : 'false' }}  }">
 
     <a href="{{ empty($submenus) ? route($url) : '#'}}"

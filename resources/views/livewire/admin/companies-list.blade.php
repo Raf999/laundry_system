@@ -86,7 +86,7 @@
                 @forelse($companies as $company)
                     <tr class="dark:hover:bg-gray-700 dark:text-white">
                         <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $company->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $company->address }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm ">{{ Str::limit($company->address, 35, '...')  }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $company->phone }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $company->email }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">

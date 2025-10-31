@@ -1,5 +1,5 @@
 @php use App\Services\Util; @endphp
-<div class="{{$gradient}} rounded-2xl p-6 text-white shadow-lg">
+<div class="{{$gradient ?? 'bg-theme-primary'}} rounded-2xl p-6 text-white shadow-lg">
     <div class="flex items-start justify-between mb-4">
         <h3 class="text-base font-medium opacity-90">{{$title}}</h3>
         <div class="bg-white bg-opacity-20 rounded-full p-2 w-10 h-10 flex items-center justify-center">

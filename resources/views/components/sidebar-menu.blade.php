@@ -3,7 +3,7 @@
     <a href="{{ empty($submenus) ? route($url) : '#'}}"
        wire:navigate.hover @click="open = !open"
        wire:current="bg-gray-700 text-white"
-       class="w-full flex items-center justify-between text-left px-3 py-2 rounded-lg hover:bg-gray-700 hover:text-white text-gray-900 dark:text-gray-300 text-base">
+       class="w-full flex items-center justify-between text-left px-3 py-2 rounded-lg hover:bg-gray-700 hover:text-white text-gray-900 text-base">
         {{--            {{ request()->routeIs($url . '*') ? 'bg-gray-700 text-white' : '' }}">--}}
         <div class="flex items-center space-x-3 ">
             <i class="{{ $icon }} text-base font-thin"></i>

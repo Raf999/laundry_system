@@ -1,7 +1,7 @@
 @php $user = auth('staff')->user() @endphp
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="color-scheme: dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-theme-primary dark:text-white font-sans ">
+<body class="bg-theme-primary font-sans ">
 <div class="flex h-screen overflow-hidden">
 
     <!-- Sidebar -->
@@ -30,14 +30,14 @@
         <!-- Top Navigation/Breadcrumb -->
         <div class="flex px-6 py-5 justify-between items-center">
             <div class="flex items-center space-x-2 text-sm">
-                <span class=" text-gray-800 dark:text-gray-400">{{$title ?? ''}}</span>
+                <span class=" text-gray-800">{{$title ?? ''}}</span>
                 <i class="fas fa-chevron-right text-gray-500 text-xs"></i>
-                <span class="text-gray-800 dark:text-gray-400">@yield('page-title', 'Overview')</span>
+                <span class="text-gray-800 ">@yield('page-title', 'Overview')</span>
             </div>
 
             <div class="flex items-center space-x-4">
                 <i class="fas fa-user text-sm text-white bg-gray-700 px-3 py-2 rounded-full"></i>
-                <p class="text-sm">Hi! {{$user->full_name}}</p>
+                <p class="text-sm text-gray-800">Hi! {{$user->full_name}}</p>
             </div>
         </div>
 

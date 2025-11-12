@@ -11,7 +11,7 @@
     <div class="flex justify-between gap-10">
         {{--Current Order Status --}}
         <x-order-status-card></x-order-status-card>
-        <x-recent-activity-card></x-recent-activity-card>
+        <livewire:staff.recent-activity-card></livewire:staff.recent-activity-card>
     </div>
 
     <div class="flex justify-between gap-10">

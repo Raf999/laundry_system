@@ -1,17 +1,47 @@
+@php use App\Enum\OrderStatus;use App\Models\Order; @endphp
 {{-- resources/views/components/order-status-card.blade.php --}}
 @props([
-    'orders' => [
-        ['label' => 'New Orders', 'value' => 15, 'color' => '#22c55e'],
-        ['label' => 'In Process', 'value' => 20, 'color' => '#4ade80'],
-        ['label' => 'Drying', 'value' => 18, 'color' => '#93c5fd'],
-        ['label' => 'Ironing', 'value' => 10, 'color' => '#bfdbfe'],
-        ['label' => 'Quality Check', 'value' => 7, 'color' => '#f87171'],
-        ['label' => 'Quality Check', 'value' => 0, 'color' => '#ef4444'],
-        ['label' => 'Completed Today', 'value' => 30, 'color' => '#ef4444'],
-    ]
+//    'orders' => [
+//        ['label' => 'New Orders', 'value' => 15, 'color' => '#22c55e'],
+//        ['label' => 'In Process', 'value' => 20, 'color' => '#4ade80'],
+//        ['label' => 'Drying', 'value' => 18, 'color' => '#93c5fd'],
+//        ['label' => 'Ironing', 'value' => 10, 'color' => '#bfdbfe'],
+//        ['label' => 'Quality Check', 'value' => 7, 'color' => '#f87171'],
+//        ['label' => 'Quality Check', 'value' => 0, 'color' => '#ef4444'],
+//        ['label' => 'Completed Today', 'value' => 30, 'color' => '#ef4444'],
+//    ]
 ])
 
 @php
+    $query = Order::query();
+    $orders = [
+        [
+            'label' => 'New Orders',
+            'value' => $query->clone()->where('status', OrderStatus::PROCESSING->value)->count(),
+            'color' => OrderStatus::from(OrderStatus::PROCESSING->value)->hexColor()
+        ],
+        [
+            'label' => 'Washed',
+            'value' => $query->clone()->where('status', OrderStatus::WASHED->value)->count(),
+            'color' => OrderStatus::from(OrderStatus::WASHED->value)->hexColor()
+        ],
+        [
+            'label' => 'Ironed',
+            'value' => $query->clone()->where('status', OrderStatus::IRONED->value)->count(),
+            'color' => OrderStatus::from(OrderStatus::IRONED->value)->hexColor()
+        ],
+        [
+            'label' => 'Ready for Pickup',
+            'value' => $query->clone()->where('status', OrderStatus::READY_FOR_PICKUP->value)->count(),
+            'color' => OrderStatus::from(OrderStatus::READY_FOR_PICKUP->value)->hexColor()
+        ],
+        [
+            'label' => 'Completed Today',
+            'value' => $query->clone()->whereDate('completed_at', now()->toDateString())->count(),
+            'color' => OrderStatus::from(OrderStatus::COMPLETED->value)->hexColor()
+        ],
+    ];
+
     $chartId = 'order-status-chart-' . uniqid();
     // Separate data for donut chart (first 6 items) and display list (all items)
     $donutData = array_slice($orders, 0, 6);
@@ -24,7 +54,7 @@
 @endphp
 
 <div {{ $attributes->merge(['class' => 'bg-theme-primary rounded-lg shadow-md p-6 w-full']) }}>
-    <h2 class="text-xl font-semibold dark:text-white text-gray-800 mb-6">Current Order Status</h2>
+    <h2 class="text-xl font-semibold text-gray-800 mb-6">Current Order Status</h2>
 
     <div class="flex items-center gap-8">
         {{-- Donut Chart --}}
@@ -36,14 +66,14 @@
         <div class="flex-1 space-y-2">
             @foreach($orders as $order)
                 <div class="grid grid-cols-[40%_60%] items-center text-sm">
-                    <span class="dark:text-gray-200 text-gray-600">{{ $order['label'] }}:</span>
+                    <span class=" text-gray-600">{{ $order['label'] }}:</span>
                     <div class="grid grid-cols-[80%_20%] items-center gap-2">
                         <div class="h-2 rounded-full"
                              style="width: {{ min(($order['value']) / $highest * 100, 100) }}%; background-color: {{ $order['color'] }}">
 
                         </div>
                         <span class="font-semibold text-right
-                            {{ $order['label'] === 'Completed Today' ? 'text-green-600' : 'text-gray-800 dark:text-gray-200' }}">
+                            {{ $order['label'] === 'Completed Today' ? 'text-green-600' : 'text-gray-800' }}">
                             {{ $order['value'] }}
                         </span>
                     </div>
@@ -61,7 +91,7 @@
 
 @push('scripts')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const ctx = document.getElementById('{{ $chartId }}');
 
             new Chart(ctx, {
@@ -90,7 +120,7 @@
                             titleColor: '#fff',
                             bodyColor: '#fff',
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     return context.label + ': ' + context.parsed;
                                 }
                             }

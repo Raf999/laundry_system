@@ -9,7 +9,7 @@ class ClothingType extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type', 'color'];
+    protected $fillable = ['type'];
 
     public function clothingItems()
     {
@@ -19,5 +19,5 @@ class ClothingType extends Model
     public function pricings()
     {
         return $this->hasMany(Pricing::class);
-    }   
+    }
 }

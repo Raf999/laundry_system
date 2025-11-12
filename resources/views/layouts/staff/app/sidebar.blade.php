@@ -7,7 +7,7 @@
                     <i class="fas fa-cube text-white text-sm"></i>
                 </div>
                 <div>
-                    <h3 class=" text-gray-900 dark:text-white font-medium">{{$user->company?->name ?? $user->name}}</h3>
+                    <h3 class=" text-gray-800 font-medium">{{$user->company?->name ?? $user->name}}</h3>
                 </div>
             </div>
             {{--            <button class="text-gray-400 hover:text-white">--}}
@@ -111,10 +111,10 @@
     <!-- Bottom Logout Section -->
     <form method="POST" action="{{ route('staff.logout') }}">
         @csrf
-        <button type="submit" class="p-4 text-gray-800 border-t dark:border-gray-700 border-gray-200 flex items-center space-x-3 w-full  hover:bg-gray-300 dark:hover:bg-gray-700 text-lg">
-            <i class="fas fa-sign-out-alt  text-gray-800 dark:text-white  rounded-full"></i>
+        <button type="submit" class="p-4 text-gray-800 border-t border-gray-200 flex items-center space-x-3 w-full  hover:bg-gray-300  text-lg">
+            <i class="fas fa-sign-out-alt  text-gray-800  rounded-full"></i>
 
-            <span class="dark:text-gray-300">Logout</span>
+            <span>Logout</span>
         </button>
     </form>
 </div>

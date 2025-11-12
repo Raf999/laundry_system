@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Activity;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +16,7 @@ class DatabaseSeeder extends Seeder
         // --------------------
         $this->call(StaffSeeder::class);
 //
+        Activity::factory(10)->create();
 //        // --------------------
 //        // Customers
 //        // --------------------

@@ -9,7 +9,9 @@ class OrderItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['order_id', 'clothing_type_id', 'service_id', 'color', 'price'];
+    protected $guarded = ['id'];
+
+    protected $appends = ['total_amount'];
 
     public function order()
     {
@@ -24,5 +26,10 @@ class OrderItem extends Model
     public function service()
     {
         return $this->belongsTo(Service::class);
+    }
+
+    public function getTotalAmountAttribute()
+    {
+        return $this->unit_price * $this->quantity;
     }
 }

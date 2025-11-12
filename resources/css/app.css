@@ -8,11 +8,11 @@
 
 @layer utilities {
     .bg-theme-primary {
-        @apply bg-zinc-50 dark:bg-zinc-950;
+        @apply bg-zinc-50 /*dark:bg-zinc-800*/;
     }
 
     .bg-theme-secondary {
-        @apply bg-zinc-200 dark:bg-zinc-900;
+        @apply bg-zinc-200 /*dark:bg-zinc-700/40*/;
     }
 }
 

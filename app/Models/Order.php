@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\PaymentStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -11,9 +12,10 @@ class Order extends Model
 
     protected $fillable = ['customer_id', 'Staff_id', 'order_date', 'status'];
 
-    public function customer()
+    protected $appends = ['total_amount', 'payment_status'];
+    public function user()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(User::class);
     }
 
     public function Staff()
@@ -21,7 +23,7 @@ class Order extends Model
         return $this->belongsTo(Staff::class);
     }
 
-    public function orderItems()
+    public function items()
     {
         return $this->hasMany(OrderItem::class);
     }
@@ -30,4 +32,30 @@ class Order extends Model
     {
         return $this->hasOne(Invoice::class);
     }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function getTotalAmountAttribute()
+    {
+        return $this->items->sum('total_amount');
+    }
+
+    public function amountDue(): float
+    {
+        return ($this->total_amount + $this->delivery_cost) - $this->discount_amount - $this->amount_paid;
+    }
+
+
+    public function getPaymentStatusAttribute()
+    {
+        if (($this->amountDue()) <= 0) {
+            return PaymentStatus::PAID->value;
+        }
+
+        return PaymentStatus::UNPAID->value;
+    }
+
 }

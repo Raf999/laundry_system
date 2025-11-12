@@ -9,7 +9,7 @@
     $chartId = 'revenue-chart-' . uniqid();
 @endphp
 
-<div {{ $attributes->merge(['class' => 'bg-white rounded-lg shadow-md p-6 w-full']) }}>
+<div {{ $attributes->merge(['class' => 'bg-theme-primary rounded-lg shadow-md p-6 w-full']) }}>
     <h2 class="text-lg font-semibold text-gray-800 mb-6">{{ $title }}</h2>
 
     <div class="relative h-64">

@@ -34,7 +34,7 @@
                 <a
                     href="{{ !empty($item['url']) ? route($item['url'])  : '#'}}"
                     wire:navigate.hover
-                    class="block px-3 py-2 text-sm text-gray-900 dark:text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg {{ !empty($item['url']) && request()->routeIs($item['url']) ? 'bg-gray-700 text-white': ''}}">{{$item['title']}}</a>
+                    class="block px-3 py-2 text-sm text-gray-900 hover:text-white hover:bg-gray-700 rounded-lg {{ !empty($item['url']) && request()->routeIs($item['url']) ? 'bg-gray-700 text-white': ''}}">{{$item['title']}}</a>
             @endforeach
         </div>
     @endif

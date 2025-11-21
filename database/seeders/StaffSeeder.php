@@ -16,7 +16,7 @@ class StaffSeeder extends Seeder
      */
     public function run(): void
     {
-        $company = Company::create([
+        $company = Company::updateOrCreate([
             'name' => 'Raf Laundry',
             'address' => 'Accra, Ghana',
             'phone' => '+233200000000',
@@ -24,7 +24,7 @@ class StaffSeeder extends Seeder
             'status' => CompanyStatus::APPROVED->value,
         ]);
 
-        Staff::create([
+        Staff::updateOrCreate([
             'full_name' => 'John Doe',
             'role' => StaffRoleEnum::ADMIN->value,
             'phone' => '+233290000000',

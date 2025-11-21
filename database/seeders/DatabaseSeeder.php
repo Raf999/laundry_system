@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Activity;
+use App\Models\ClothingType;
+use App\Models\Pricing;
+use App\Models\Service;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +20,20 @@ class DatabaseSeeder extends Seeder
         $this->call(StaffSeeder::class);
 //
         Activity::factory(10)->create();
+
+        ClothingType::create(['type' => 'T-Shirt']);
+        ClothingType::create(['type' => 'Trousers']);
+
+        Service::create(['name' => 'Washing', 'description' => 'Machine wash']);
+        Service::create(['name' => 'Ironing', 'description' => 'Press with iron']);
+        Service::create(['name' => 'Dry Cleaning', 'description' => 'Chemical cleaning']);
+
+        Pricing::create(['clothing_type_id' => 1, 'service_id' => 1, 'price' => 16.00]);
+        Pricing::create(['clothing_type_id' => 1, 'service_id' => 2, 'price' => 15.00]);
+        Pricing::create(['clothing_type_id' => 1, 'service_id' => 3, 'price' => 13.00]);
+        Pricing::create(['clothing_type_id' => 2, 'service_id' => 1, 'price' => 20.00]);
+        Pricing::create(['clothing_type_id' => 2, 'service_id' => 2, 'price' => 12.00]);
+        Pricing::create(['clothing_type_id' => 2, 'service_id' => 3, 'price' => 10.00]);
 //        // --------------------
 //        // Customers
 //        // --------------------

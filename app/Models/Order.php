@@ -5,12 +5,13 @@ namespace App\Models;
 use App\Enum\PaymentStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Log;
 
 class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer_id', 'Staff_id', 'order_date', 'status'];
+    protected $guarded = ['id'];
 
     protected $appends = ['total_amount', 'payment_status'];
     public function user()

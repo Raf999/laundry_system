@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\OrderStatus;
 use App\Http\Controllers\Staff\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Staff\Auth\NewPasswordController;
 use App\Http\Controllers\Staff\Auth\PasswordController;
@@ -33,6 +34,10 @@ Route::prefix('staff')->name('staff.')->group(function () {
 
     Route::middleware('auth:staff')->group(function () {
         Route::get('/dashboard', Dashboard::class)->name('dashboard');
+        Route::prefix('orders')->as('orders.')->group(function () {
+            Route::get('/', Orders::class)->name('orders');
+            Route::get('/ready_for_pickup', Orders::class)->defaults('status', OrderStatus::READY_FOR_PICKUP->value)->name('ready-for-pickup');
+        });
         Route::get('/orders', Orders::class)->name('orders');
         Route::get('/customers', Customers::class)->name('customers');
         Route::get('/reports', Reports::class)->name('reports');

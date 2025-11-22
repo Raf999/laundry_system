@@ -34,7 +34,7 @@
                     :submenus="[
                                ['title' => 'Overview',],
                                ['title' => 'Orders List', 'url' => 'staff.orders'],
-                               ['title' => 'Ready For Pickup' ]
+                               ['title' => 'Ready For Pickup', 'url' => 'staff.orders.ready-for-pickup' ]
                            ]"
                 />
 

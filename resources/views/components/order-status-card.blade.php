@@ -50,13 +50,16 @@
     $donutColors = array_column($donutData, 'color');
 
     //find highest out of donutvalues
-    $highest = max($donutValues);
+    $highest = max($donutValues) == 0 ? 1 : max($donutValues);
+    \Illuminate\Support\Facades\Log::info($highest);
+
 @endphp
 
 <div {{ $attributes->merge(['class' => 'bg-theme-primary rounded-lg shadow-md p-6 w-full']) }}>
     <h2 class="text-xl font-semibold text-gray-800 mb-6">Current Order Status</h2>
 
-    <div class="flex items-center gap-8">
+    <div class="flex items-center gap-8 justify-center">
+        @if(array_sum($donutValues) > 0)
         {{-- Donut Chart --}}
         <div class="w-40 h-40 flex-shrink-0">
             <canvas id="{{ $chartId }}"></canvas>
@@ -80,6 +83,9 @@
                 </div>
             @endforeach
         </div>
+        @else
+            <p class="text-gray-500 text-center py-6">No orders available yet.</p>
+        @endif
     </div>
 </div>
 
